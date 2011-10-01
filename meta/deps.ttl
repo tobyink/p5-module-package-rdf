@@ -1,0 +1,16 @@
+@prefix : <http://purl.org/NET/cpan-uri/terms#> .
+
+<http://purl.org/NET/cpan-uri/dist/Module-Package-RDF/project>
+	:requires
+		"Module::Package" ,
+		"Module::Install::RDF 0.001" ,
+		"Module::Install::DOAP 0.001" ,
+		"Module::Install::DOAPChangeSets 0.200" ,
+		"Module::Install::AutoLicense 0.08" ,
+		"Module::Install::ReadmeFromPod 0.12" ,
+		"Module::Install::AutoManifest" ,
+		"RDF::Trine 0.133" ,
+		"Log::Log4perl" ,
+		"URI::file 4.0" ;
+	:test_requires
+		"Test::More 0.61" .

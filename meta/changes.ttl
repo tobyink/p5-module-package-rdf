@@ -1,0 +1,18 @@
+@prefix :        <http://usefulinc.com/ns/doap#> .
+@prefix dcs:     <http://ontologi.es/doap-changeset#> .
+@prefix dc:      <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix my:      <http://purl.org/NET/cpan-uri/dist/Module-Package-RDF/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix toby:    <http://tobyinkster.co.uk/#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+my:project :release my:v_0-001 .
+my:v_0-001
+
+	a               :Version ;
+	dc:issued       "2011-10-01"^^xsd:date ;
+	:revision       "0.001"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.001.tar.gz> ;
+	rdfs:label      "Initial release" .
+
