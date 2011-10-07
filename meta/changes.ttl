@@ -9,10 +9,37 @@
 
 my:project :release my:v_0-001 .
 my:v_0-001
-
 	a               :Version ;
 	dc:issued       "2011-10-01"^^xsd:date ;
 	:revision       "0.001"^^xsd:string ;
 	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.001.tar.gz> ;
 	rdfs:label      "Initial release" .
 
+my:project :release my:v_0-002 .
+my:v_0-002
+	a               :Version ;
+	dc:issued       "2011-10-03"^^xsd:date ;
+	:revision       "0.002"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.002.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-001 ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "Include mkdist script and Module::Package::RDF::Create."@en ]
+		] .
+
+my:project :release my:v_0-003 .
+my:v_0-003
+	a               :Version ;
+	dc:issued       "2011-10-06"^^xsd:date ;
+	:revision       "0.003"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.003.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-002 ;
+		dcs:item   [ a dcs:Bugfix ; rdfs:label "Prevent Module::Package::RDF::Create's pod and the template module's pod from getting muddled."@en ] ;
+		dcs:item   [ a dcs:Update ; rdfs:label "Generated modules now default to using perl 5.010."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "Generated modules will include $AUTHORITY variables."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "Generated modules will include SYNOPSIS in pod."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "Generated modules will include DISCLAIMER OF WARRANTIES in pod."@en ] ;
+		dcs:item   [ a dcs:Addition ; rdfs:label "Module::Package::Dist::RDF::standard to run code at user end."@en ] ;
+		dcs:item   [ a dcs:Update ; rdfs:label "use Module::Package 0.30"@en ] ;
+		dcs:item   [ a dcs:Bugfix ; rdfs:label "Module::Package::Dist::RDF::standard uses Meta::Install::TrustMetaYml - this resolves some dependency issues with resultant packages."@en ] ;
+		] .

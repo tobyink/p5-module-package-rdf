@@ -1,6 +1,7 @@
 package Module::Package::RDF;
 
-our $VERSION = '0.001';
+use 5.008003;
+our $VERSION = '0.003';
 
 package Module::Package::RDF::standard;
 
@@ -8,15 +9,18 @@ use 5.008003;
 use strict;
 
 use RDF::Trine 0.133 ();
-use Module::Package 0.29 ();
+use Module::Package 0.30 ();
+use Module::Install::AutoInstall 0 ();
 use Module::Install::AutoLicense 0.08 ();
+use Module::Install::AutoManifest 0 ();
 use Module::Install::ReadmeFromPod 0.12 ();
-use Module::Install::RDF 0.001 ();
-use Module::Install::DOAP 0.001 ();
-use Module::Install::DOAPChangeSets 0.103 ();
+use Module::Install::RDF 0.002 ();
+use Module::Install::DOAP 0.002 ();
+use Module::Install::DOAPChangeSets 0.201 ();
+use Module::Install::TrustMetaYml 0.001 ();
 use Log::Log4perl 0 qw(:easy);
 
-our $VERSION = '0.001';
+our $VERSION = '0.003';
 
 use Moo;
 extends 'Module::Package::Plugin';
@@ -25,9 +29,12 @@ sub main
 {
 	my ($self) = @_;
 
+	$self->mi->trust_meta_yml;
 	$self->mi->rdf_metadata;
 	$self->mi->doap_metadata;
 	$self->mi->sign;
+	
+	$self->mi->include_deps('Module::Package::Dist::RDF');
 
 	# These run later, as specified.
 	$self->post_all_from(sub {Log::Log4perl->easy_init($ERROR);$self->mi->write_doap_changes});
@@ -36,11 +43,14 @@ sub main
 	$self->post_all_from(sub {$self->mi->auto_install});
 	
 	$self->post_all_from(sub {$self->mi->clean_files('Changes')});
-	$self->post_all_from(sub {$self->mi->clean_files('MANIFEST')});
-	$self->post_all_from(sub {$self->mi->clean_files('SIGNATURE')});
-	$self->post_all_from(sub {$self->mi->clean_files('README')});
+	$self->post_all_from(sub {$self->mi->clean_files('inc')});
 	$self->post_all_from(sub {$self->mi->clean_files('LICENSE')});
+	$self->post_all_from(sub {$self->mi->clean_files('MANIFEST')});
 	$self->post_all_from(sub {$self->mi->clean_files('META.yml')});
+	$self->post_all_from(sub {$self->mi->clean_files('MYMETA.json')});
+	$self->post_all_from(sub {$self->mi->clean_files('MYMETA.yml')});
+	$self->post_all_from(sub {$self->mi->clean_files('README')});
+	$self->post_all_from(sub {$self->mi->clean_files('SIGNATURE')});
 }
 
 # We don't want to auto-invoke all_from...
@@ -75,17 +85,19 @@ In addition to the inherited behavior, this flavour uses the following plugins:
 
 =over
 
-=item * RDF
+=item * AutoLicense
+
+=item * AutoManifest
 
 =item * DOAP
 
 =item * DOAPChangeSets
 
+=item * RDF
+
 =item * ReadmeFromPod
 
-=item * AutoLicense
-
-=item * AutoManifest
+=item * TrustMetaYml
 
 =back
 

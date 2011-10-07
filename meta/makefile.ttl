@@ -3,6 +3,8 @@
 <http://purl.org/NET/cpan-uri/dist/Module-Package-RDF/project>
 	:perl_version_from _:main ;
 	:version_from _:main ;
-	:readme_from _:main .
+	:readme_from _:main ;
+	:install_script _:mkdist .
 
 _:main <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "lib/Module/Package/RDF.pm" .
+_:mkdist <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "bin/mkdist" .

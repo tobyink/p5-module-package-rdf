@@ -2,15 +2,28 @@
 
 <http://purl.org/NET/cpan-uri/dist/Module-Package-RDF/project>
 	:requires
-		"Module::Package" ,
-		"Module::Install::RDF 0.001" ,
-		"Module::Install::DOAP 0.001" ,
-		"Module::Install::DOAPChangeSets 0.200" ,
+		"Module::Package 0.30" ,
+		"Module::Install::RDF 0.002" ,
+		"Module::Install::DOAP 0.002" ,
+		"Module::Install::DOAPChangeSets 0.201" ,
 		"Module::Install::AutoLicense 0.08" ,
 		"Module::Install::ReadmeFromPod 0.12" ,
 		"Module::Install::AutoManifest" ,
+		"Module::Install::TrustMetaYml 0.001" ,
+		"Module::Install::AutoInstall 0" ,
 		"RDF::Trine 0.133" ,
 		"Log::Log4perl" ,
+		"URI::Escape",
+		"Software::License",
+		"Carp",
+		"IO::All",
+		"Text::Template",
+		"DateTime",
+		"Test::Pod",
+		"Test::Pod::Coverage",
+		"Test::RDF::DOAP::Version",
+		"Getopt::Long" ,
+		"Getopt::ArgvFile" ,
 		"URI::file 4.0" ;
 	:test_requires
 		"Test::More 0.61" .
