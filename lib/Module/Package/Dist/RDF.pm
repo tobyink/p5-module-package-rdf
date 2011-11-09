@@ -7,7 +7,7 @@ package Module::Package::Dist::RDF::standard;
 
 use 5.008003;
 use strict;
-use base qw[Module::Package::Dist];
+use parent qw[Module::Package::Dist];
 our $VERSION = '0.001';
 
 sub _main
