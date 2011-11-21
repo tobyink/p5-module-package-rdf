@@ -1,9 +1,9 @@
 #!/usr/bin/perl
 
 use Getopt::ArgvFile
-        home => 1,
-        current => 1,
-        resolveEnvVars => 1;
+	home => 1,
+	current => 1,
+	resolveEnvVars => 1;
 use Getopt::Long qw[:config permute bundling no_ignore_case no_auto_abbrev];
 
 my %options;
@@ -54,6 +54,7 @@ Copyright data keys:
 
 The values of "use" are interpreted thusly:
 
+  * 'boolean' uses 'boolean' and avoids defining constants for true and false.
   * 'common_sense' uses 'common::sense' instead of 'strict' and 'warnings'.
   * 'namespace_clean' uses 'namespace::clean'.
   * 'moose' (lowercase) uses 'Moose' and 'namespace::clean'.
@@ -71,6 +72,8 @@ Example:
          --author cpanid="tobyink" \
          --copyright year=2010 \
          --abstract="does something useful" \
+         --use autodie \
+         --use boolean \
          --use common_sense \
          --use DateTime \
          --use 5.008003 \

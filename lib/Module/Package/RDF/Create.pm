@@ -4,9 +4,7 @@ use common::sense;
 
 BEGIN {
 	$Module::Package::RDF::Create::AUTHORITY = 'cpan:TOBYINK';
-}
-BEGIN {
-	$Module::Package::RDF::Create::VERSION   = '0.003';
+	$Module::Package::RDF::Create::VERSION   = '0.004';
 }
 
 use Carp;
@@ -144,11 +142,14 @@ sub set_defaults
 		holder  => $self->{copyright}{holder},
 		});
 	
-	$self->{includes} = [grep {!/^(common_sense|strict|warnings|moose|5\.[0-9_]+|namespace_clean)$/} keys %{$self->{use}}];
+	# 'includes' is 'use' minus some modules we handle specially
+	$self->{includes} = [grep {!/^(autodie|boolean|common_sense|strict|warnings|moose|5\.[0-9_]+|namespace_clean)$/} keys %{$self->{use}}];
 	
 	{
 		my @mr = @{ $self->{includes} };
 		push @mr, 'Moose'            if $self->{use}{moose};
+		push @mr, 'autodie'          if $self->{use}{autodie};
+		push @mr, 'boolean'          if $self->{use}{boolean};
 		push @mr, 'common::sense'    if $self->{use}{common_sense};
 		push @mr, 'namespace::clean' if $self->{use}{namespace_clean}
 		                             || $self->{use}{moose};
@@ -168,8 +169,9 @@ sub set_defaults
 	$self->{pragmas} ||= join "\n", do {
 			my @pragmas = grep { /^5\.[0-9_]+$/ } keys %{$self->{use}};
 			push @pragmas, '5.010' unless @pragmas;
+			push @pragmas, 'autodie' if $self->{use}{autodie};
+			push @pragmas, ($self->{use}{boolean}) ?  'boolean' : 'constant { false => 0, true => 1 }';
 			push @pragmas, ($self->{use}{common_sense} ? ('common::sense') : ('strict','warnings'));
-			push @pragmas, 'constant { FALSE => 0, TRUE => 1 }';
 			push @pragmas, 'utf8';
 			push @pragmas, 'Moose' if $self->{use}{moose};
 			map { sprintf('use %s;', $_) } @pragmas;
@@ -184,7 +186,7 @@ sub set_defaults
 	$self->{final_code} ||= join "\n", do {
 			my @lines;
 			push @lines, '__PACKAGE__->meta->make_immutable;' if $self->{use}{moose};
-			push @lines, 'TRUE;';
+			push @lines, 'true;';
 			@lines;
 		};
 		
@@ -307,8 +309,6 @@ package {$module_name};
 
 BEGIN \{
 	${$module_name}::AUTHORITY = 'cpan:{uc $author->{cpanid}}';
-\}
-BEGIN \{
 	${$module_name}::VERSION   = '{$version}';
 \}
 

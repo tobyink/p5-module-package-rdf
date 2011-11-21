@@ -1,7 +1,7 @@
 package Module::Package::RDF;
 
 use 5.008003;
-our $VERSION = '0.003';
+our $VERSION = '0.004';
 
 package Module::Package::RDF::standard;
 
@@ -20,7 +20,7 @@ use Module::Install::DOAPChangeSets 0.201 ();
 use Module::Install::TrustMetaYml 0.001 ();
 use Log::Log4perl 0 qw(:easy);
 
-our $VERSION = '0.003';
+our $VERSION = '0.004';
 
 use Moo;
 extends 'Module::Package::Plugin';

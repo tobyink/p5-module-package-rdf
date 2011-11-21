@@ -43,3 +43,15 @@ my:v_0-003
 		dcs:item   [ a dcs:Update ; rdfs:label "use Module::Package 0.30"@en ] ;
 		dcs:item   [ a dcs:Bugfix ; rdfs:label "Module::Package::Dist::RDF::standard uses Meta::Install::TrustMetaYml - this resolves some dependency issues with resultant packages."@en ] ;
 		] .
+
+my:project :release my:v_0-004 .
+my:v_0-004
+	a               :Version ;
+	dc:issued       "2011-11-21"^^xsd:date ;
+	:revision       "0.004"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.004.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-003 ;
+		dcs:item   [ a dcs:Bugfix ; rdfs:label "Module::Package::RDF::Create now handles '--use boolean' and '--use autodie' specially."@en ] ;
+		dcs:item   [ a dcs:Documentation ; rdfs:label "The 'mkdist' functionality should be split into a different release."@en ] ;
+		] .
