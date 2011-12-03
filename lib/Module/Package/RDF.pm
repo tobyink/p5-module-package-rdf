@@ -1,7 +1,10 @@
 package Module::Package::RDF;
 
 use 5.008003;
-our $VERSION = '0.004';
+BEGIN {
+	$Module::Package::RDF::AUTHORITY = 'cpan:TOBYINK';
+	$Module::Package::RDF::VERSION   = '0.005';
+}
 
 package Module::Package::RDF::standard;
 
@@ -20,7 +23,10 @@ use Module::Install::DOAPChangeSets 0.201 ();
 use Module::Install::TrustMetaYml 0.001 ();
 use Log::Log4perl 0 qw(:easy);
 
-our $VERSION = '0.004';
+BEGIN {
+        $Module::Package::RDF::standard::AUTHORITY = 'cpan:TOBYINK';
+        $Module::Package::RDF::standard::VERSION   = '0.005';
+}
 
 use Moo;
 extends 'Module::Package::Plugin';
@@ -62,6 +68,12 @@ sub all_from
 }
 
 sub write_deps_list {}
+
+__END__
+
+=head1 NAME
+
+Module::Package::RDF - drive your distribution with RDF
 
 =head1 SYNOPSIS
 
@@ -124,5 +136,11 @@ Copyright (C) 2011 by Toby Inkster
 
 This library is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
+
+=head1 DISCLAIMER OF WARRANTIES
+
+THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 =cut

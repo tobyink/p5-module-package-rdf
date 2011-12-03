@@ -3,8 +3,8 @@
 <http://purl.org/NET/cpan-uri/dist/Module-Package-RDF/project>
 	:requires
 		"Module::Package 0.30" ,
-		"Module::Install::RDF 0.002" ,
-		"Module::Install::DOAP 0.002" ,
+		"Module::Install::RDF 0.004" ,
+		"Module::Install::DOAP 0.004" ,
 		"Module::Install::DOAPChangeSets 0.201" ,
 		"Module::Install::AutoLicense 0.08" ,
 		"Module::Install::ReadmeFromPod 0.12" ,

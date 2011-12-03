@@ -4,7 +4,7 @@ use common::sense;
 
 BEGIN {
 	$Module::Package::RDF::Create::AUTHORITY = 'cpan:TOBYINK';
-	$Module::Package::RDF::Create::VERSION   = '0.004';
+	$Module::Package::RDF::Create::VERSION   = '0.005';
 }
 
 use Carp;

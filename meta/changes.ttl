@@ -54,4 +54,18 @@ my:v_0-004
 		dcs:versus my:v_0-003 ;
 		dcs:item   [ a dcs:Bugfix ; rdfs:label "Module::Package::RDF::Create now handles '--use boolean' and '--use autodie' specially."@en ] ;
 		dcs:item   [ a dcs:Documentation ; rdfs:label "The 'mkdist' functionality should be split into a different release."@en ] ;
+		dcs:item   [ a dcs:Regression ; rdfs:label "use parent"@en ] ;
+		] .
+
+my:project :release my:v_0-005 .
+my:v_0-005
+	a               :Version ;
+	dc:issued       "2011-12-03"^^xsd:date ;
+	:revision       "0.005"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.005.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-004 ;
+		dcs:item   [ a dcs:Bugfix ; rdfs:label "use base"@en ] ;
+		dcs:item   [ a dcs:Documentation ; rdfs:label "add 'NAME' section" ] ;
+		dcs:item   [ a dcs:Documentation ; rdfs:label "add 'DISCLAIMER OF WARRANTIES' section" ] 
 		] .
