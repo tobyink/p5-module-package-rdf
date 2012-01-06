@@ -38,6 +38,7 @@ sub main
 	$self->mi->trust_meta_yml;
 	$self->mi->rdf_metadata;
 	$self->mi->doap_metadata;
+	$self->mi->static_config;
 	$self->mi->sign;
 	
 	$self->mi->include_deps('Module::Package::Dist::RDF');
@@ -59,11 +60,11 @@ sub main
 	$self->post_all_from(sub {$self->mi->clean_files('SIGNATURE')});
 }
 
-# We don't want to auto-invoke all_from...
+# We __don't__ want to auto-invoke all_from...
 sub all_from
 {
 	my $self = shift;
-	# $self->mi->_all_from(@_);
+	# $self->mi->_all_from(@_); # NO THANK YOU!
 	$_->() for @{$self->{post_all_from} || []};
 }
 
@@ -112,6 +113,8 @@ In addition to the inherited behavior, this flavour uses the following plugins:
 =item * TrustMetaYml
 
 =back
+
+And sets C<< static_config >> and C<< sign >>.
 
 =head1 BUGS
 
