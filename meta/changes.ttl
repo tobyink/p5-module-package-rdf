@@ -24,7 +24,7 @@ my:v_0-002
 	dcs:changeset [
 		dcs:versus my:v_0-001 ;
 		dcs:item   [ a dcs:Addition ; rdfs:label "Include mkdist script and Module::Package::RDF::Create."@en ]
-		] .
+	] .
 
 my:project :release my:v_0-003 .
 my:v_0-003
@@ -42,7 +42,7 @@ my:v_0-003
 		dcs:item   [ a dcs:Addition ; rdfs:label "Module::Package::Dist::RDF::standard to run code at user end."@en ] ;
 		dcs:item   [ a dcs:Update ; rdfs:label "use Module::Package 0.30"@en ] ;
 		dcs:item   [ a dcs:Bugfix ; rdfs:label "Module::Package::Dist::RDF::standard uses Meta::Install::TrustMetaYml - this resolves some dependency issues with resultant packages."@en ] ;
-		] .
+	] .
 
 my:project :release my:v_0-004 .
 my:v_0-004
@@ -55,7 +55,7 @@ my:v_0-004
 		dcs:item   [ a dcs:Bugfix ; rdfs:label "Module::Package::RDF::Create now handles '--use boolean' and '--use autodie' specially."@en ] ;
 		dcs:item   [ a dcs:Documentation ; rdfs:label "The 'mkdist' functionality should be split into a different release."@en ] ;
 		dcs:item   [ a dcs:Regression ; rdfs:label "use parent"@en ] ;
-		] .
+	] .
 
 my:project :release my:v_0-005 .
 my:v_0-005
@@ -68,4 +68,17 @@ my:v_0-005
 		dcs:item   [ a dcs:Bugfix ; rdfs:label "use base"@en ] ;
 		dcs:item   [ a dcs:Documentation ; rdfs:label "add 'NAME' section" ] ;
 		dcs:item   [ a dcs:Documentation ; rdfs:label "add 'DISCLAIMER OF WARRANTIES' section" ] 
-		] .
+	] .
+
+my:project :release my:v_0-006 .
+my:v_0-006
+	a               :Version ;
+	dc:issued       "2012-07-04"^^xsd:date ;
+	:revision       "0.006"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.006.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-005 ;
+		dcs:item   [ a dcs:Update ; rdfs:label "mkdist now creates Pretdsl instead of Turtle."@en ] ;
+		dcs:item   [ rdfs:label "Module::Package::RDF::Create is now App::mkdist."@en ] ;
+		dcs:item   [ rdfs:label "The ':standard' bit of 'RDF:standard' is now optional."@en ] ;
+	] .
