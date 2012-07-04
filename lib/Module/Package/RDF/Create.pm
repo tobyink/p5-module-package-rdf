@@ -1,6 +1,6 @@
 package Module::Package::RDF::Create;
 
-use common::sense;
+use strict;
 
 BEGIN {
 	$Module::Package::RDF::Create::AUTHORITY = 'cpan:TOBYINK';
@@ -50,7 +50,7 @@ sub _fill_in_template
 	my ($self, $template) = @_;
 	$template = $self->_get_template($template) unless ref $template;
 	
-	my %hash;
+	my %hash = ( mpr_version => $Module::Package::RDF::VERSION );
 	while (my ($k, $v) = each %$self)
 	{
 		$hash{$k} = ref $v ? \$v : $v;
@@ -157,7 +157,7 @@ sub set_defaults
 		if (@mr)
 		{
 			$self->{requires} = sprintf(";\n\t:requires %s",
-				(join ' , ', (map { my ($pkg, $ver) = split /\s+/, $_; ($ver =~ /^v?[0-9\._]+/) ? "\"$pkg $ver\"" : "\"$pkg\"" } @mr))
+				(join ' , ', (map { my ($pkg, $ver) = split /\s+/, $_; ($ver =~ /^v?[0-9\._]+/) ? "p`$pkg $ver`" : "p`$pkg`" } @mr))
 				);
 		}
 		else
@@ -351,62 +351,45 @@ WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
 MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 COMMENCE Makefile.PL
-use inc::Module::Package 'RDF:standard';
+use inc::Module::Package 'RDF {$mpr_version}';
 
-COMMENCE meta/changes.ttl
+COMMENCE meta/changes.pret
 # This file acts as the project's changelog.
 
-@prefix :        <http://usefulinc.com/ns/doap#> .
-@prefix dcs:     <http://ontologi.es/doap-changeset#> .
-@prefix dc:      <http://purl.org/dc/terms/> .
-@prefix dist:    <http://purl.org/NET/cpan-uri/dist/{URI::Escape::uri_escape($dist_name)}/> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+`{$dist_name} {$version} cpan:{uc $author->{cpanid}}`
+	issued  {DateTime->now->ymd('-')};
+	label   "Initial release".
 
-dist:project :release dist:{$version_ident} .
-dist:{$version_ident}
-	a               :Version ;
-	dc:issued       "{DateTime->now->ymd('-')}"^^xsd:date ;
-	:revision       "{$version}"^^xsd:string ;
-	:file-release   <{$backpan}{URI::Escape::uri_escape($dist_name)}-{$version}.tar.gz> ;
-	rdfs:label      "Initial release" .
-
-COMMENCE meta/doap.ttl
+COMMENCE meta/doap.pret
 # This file contains general metadata about the project.
 
-@prefix :        <http://usefulinc.com/ns/doap#> .
-@prefix dc:      <http://purl.org/dc/terms/> .
-@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://usefulinc.com/ns/doap#>.
 
-<http://purl.org/NET/cpan-uri/dist/{URI::Escape::uri_escape($dist_name)}/project>
-	a               :Project ;
+`{$dist_name}`
 	:programming-language "Perl" ;
-	:name           "{$dist_name}" ;
-	:shortdesc      "{$abstract}" ;
-	:homepage       <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}> ;
-	:download-page  <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}> ;
-	:bug-database   <http://rt.cpan.org/Dist/Display.html?Queue={URI::Escape::uri_escape($dist_name)}> ;
-	:created        "{DateTime->now->ymd('-')}"^^xsd:date ;
-	:license        <{$licence->url}> ;
-	:developer      [ a foaf:Person ; foaf:name "{$author->{name}}" ; foaf:mbox <mailto:{$author->{mbox}}> ] .
+	:shortdesc            "{$abstract}";
+	:homepage             <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
+	:download-page        <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
+	:bug-database         <http://rt.cpan.org/Dist/Display.html?Queue={URI::Escape::uri_escape($dist_name)}>;
+	:created              {DateTime->now->ymd('-')};
+	:license              <{$licence->url}> ;
+	:developer            cpan:{uc $author->{cpanid}}
 
 <{$licence->url}>
-	dc:title        "{$licence->name}" .
+	dc:title  "{$licence->name}".
 
-COMMENCE meta/makefile.ttl
+cpan:{uc $author->{cpanid}}
+	foaf:name  "{$author->{name}}";
+	foaf:mbox  <mailto:{$author->{mbox}}>.
+
+COMMENCE meta/makefile.pret
 # This file provides instructions for packaging.
 
-@prefix : <http://purl.org/NET/cpan-uri/terms#> .
-
-<http://purl.org/NET/cpan-uri/dist/{URI::Escape::uri_escape($dist_name)}/project>
-	:perl_version_from _:main ;
-	:version_from _:main ;
-	:readme_from _:main ;
-	:test_requires "Test::More 0.61" {$requires} .
-
-_:main <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#fileName> "{$module_filename}" .
+`{$dist_name}`
+	perl_version_from m`{$module_name}`;
+	version_from      m`{$module_name}`;
+	readme_from       m`{$module_name}`;
+	test_requires     p`Test::More 0.61` {$requires} .
 
 COMMENCE t/01basic.t
 use Test::More tests => 1;
@@ -423,8 +406,7 @@ use Test::More;
 use Test::Pod::Coverage;
 
 my @modules = qw({$module_name});
-pod_coverage_ok($_, "$_ is covered")
-	foreach @modules;
+pod_coverage_ok($_, "$_ is covered") for @modules;
 done_testing(scalar @modules);
 
 COMMENCE xt/03meta_uptodate.t

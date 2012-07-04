@@ -1,31 +1,24 @@
 package Module::Package::RDF;
 
 use 5.008003;
-BEGIN {
-	$Module::Package::RDF::AUTHORITY = 'cpan:TOBYINK';
-	$Module::Package::RDF::VERSION   = '0.005';
-}
-
-package Module::Package::RDF::standard;
-
-use 5.008003;
 use strict;
 
-use RDF::Trine 0.133 ();
+use RDF::Trine 0.135 ();
+use RDF::TriN3 0.200 ();
 use Module::Package 0.30 ();
 use Module::Install::AutoInstall 0 ();
 use Module::Install::AutoLicense 0.08 ();
 use Module::Install::AutoManifest 0 ();
 use Module::Install::ReadmeFromPod 0.12 ();
-use Module::Install::RDF 0.002 ();
+use Module::Install::RDF 0.006 ();
 use Module::Install::DOAP 0.002 ();
-use Module::Install::DOAPChangeSets 0.201 ();
+use Module::Install::DOAPChangeSets 0.203 ();
 use Module::Install::TrustMetaYml 0.001 ();
 use Log::Log4perl 0 qw(:easy);
 
 BEGIN {
-        $Module::Package::RDF::standard::AUTHORITY = 'cpan:TOBYINK';
-        $Module::Package::RDF::standard::VERSION   = '0.005';
+	$Module::Package::RDF::AUTHORITY = 'cpan:TOBYINK';
+	$Module::Package::RDF::VERSION   = '0.005';
 }
 
 use Moo;
@@ -70,6 +63,16 @@ sub all_from
 
 sub write_deps_list {}
 
+{
+	package Module::Package::RDF::standard;
+	use 5.008003;
+	BEGIN {
+		$Module::Package::RDF::standard::AUTHORITY = 'cpan:TOBYINK';
+		$Module::Package::RDF::standard::VERSION   = '0.005';
+		@Module::Package::RDF::standard::ISA       = 'Module::Package::RDF';
+	}
+}
+
 __END__
 
 =head1 NAME
@@ -80,7 +83,7 @@ Module::Package::RDF - drive your distribution with RDF
 
 In your Makefile.PL:
 
-  use inc::Module::Package 'RDF:standard';
+  use inc::Module::Package 'RDF';
 
 That's all folks!
 
@@ -93,6 +96,11 @@ Really simple Makefile.PL.
 Currently this module only defines the C<:standard> flavour.
 
 =head2 :standard
+
+This is the default, so the following are equivalent:
+
+  use inc::Module::Package 'RDF';
+  use inc::Module::Package 'RDF:standard';
 
 In addition to the inherited behavior, this flavour uses the following plugins:
 
