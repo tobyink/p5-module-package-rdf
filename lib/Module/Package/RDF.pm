@@ -18,7 +18,7 @@ use Log::Log4perl 0 qw(:easy);
 
 BEGIN {
 	$Module::Package::RDF::AUTHORITY = 'cpan:TOBYINK';
-	$Module::Package::RDF::VERSION   = '0.005';
+	$Module::Package::RDF::VERSION   = '0.006';
 }
 
 use Moo;
@@ -68,10 +68,12 @@ sub write_deps_list {}
 	use 5.008003;
 	BEGIN {
 		$Module::Package::RDF::standard::AUTHORITY = 'cpan:TOBYINK';
-		$Module::Package::RDF::standard::VERSION   = '0.005';
+		$Module::Package::RDF::standard::VERSION   = '0.006';
 		@Module::Package::RDF::standard::ISA       = 'Module::Package::RDF';
 	}
 }
+
+1;
 
 __END__
 
@@ -143,7 +145,7 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2011 by Toby Inkster
+Copyright (C) 2011-2012 by Toby Inkster
 
 This library is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

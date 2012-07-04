@@ -4,7 +4,7 @@ use strict;
 
 BEGIN {
 	$App::mkdist::AUTHORITY = 'cpan:TOBYINK';
-	$App::mkdist::VERSION   = '0.005';
+	$App::mkdist::VERSION   = '0.006';
 }
 
 use Carp;
@@ -47,6 +47,8 @@ use URI::Escape qw[];
 
 sub _fill_in_template
 {
+	require Module::Package::RDF;
+	
 	my ($self, $template) = @_;
 	$template = $self->_get_template($template) unless ref $template;
 	
@@ -242,6 +244,8 @@ sub create_author_tests
 		foreach grep { m#^xt/# } $self->_get_template_names;
 }
 
+1;
+
 =head1 NAME
 
 App::mkdist - create distributions that will use Module::Package::RDF.
@@ -297,8 +301,6 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-1;
 
 __DATA__
 
@@ -372,8 +374,9 @@ COMMENCE meta/doap.pret
 	:download-page        <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
 	:bug-database         <http://rt.cpan.org/Dist/Display.html?Queue={URI::Escape::uri_escape($dist_name)}>;
 	:created              {DateTime->now->ymd('-')};
-	:license              <{$licence->url}> ;
-	:developer            cpan:{uc $author->{cpanid}}
+	:license              <{$licence->url}>;
+	:maintainer           cpan:{uc $author->{cpanid}};
+	:developer            cpan:{uc $author->{cpanid}}.
 
 <{$licence->url}>
 	dc:title  "{$licence->name}".
