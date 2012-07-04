@@ -1,10 +1,10 @@
-package Module::Package::RDF::Create;
+package App::mkdist;
 
 use strict;
 
 BEGIN {
-	$Module::Package::RDF::Create::AUTHORITY = 'cpan:TOBYINK';
-	$Module::Package::RDF::Create::VERSION   = '0.005';
+	$App::mkdist::AUTHORITY = 'cpan:TOBYINK';
+	$App::mkdist::VERSION   = '0.005';
 }
 
 use Carp;
@@ -244,7 +244,7 @@ sub create_author_tests
 
 =head1 NAME
 
-Module::Package::RDF::Create - create distributions that will use Module::Package::RDF.
+App::mkdist - create distributions that will use Module::Package::RDF.
 
 =head1 SYNOPSIS
 
@@ -256,7 +256,7 @@ This package provides just one (class) method:
 
 =over
 
-=item C<< Module::Package::RDF::Create->create($distname, %options) >>
+=item C<< App::mkdist->create($distname, %options) >>
 
 Create a distribution directory including all needed files.
 
@@ -291,7 +291,7 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT AND LICENCE
 
-This software is copyright (c) 2011 by Toby Inkster.
+This software is copyright (c) 2011-2012 by Toby Inkster.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

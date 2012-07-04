@@ -21,7 +21,7 @@ GetOptions(\%options,
 	'version|v',
 	);
 
-$options{dist_maker} = 'Module::Package::RDF::Create';
+$options{dist_maker} = 'App::mkdist';
 
 if ($options{help} || !@ARGV)
 {
@@ -63,8 +63,8 @@ The values of "use" are interpreted thusly:
 
 license_class defaults to "Software::License::Perl_5".
 
-dist_maker defaults to "Module::Package::RDF::Create", but any package
-that provides the same API should work.
+dist_maker defaults to "App::mkdist", but any package that provides the same
+API should work.
 
 Example:
 
