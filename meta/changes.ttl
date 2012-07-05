@@ -88,8 +88,20 @@ my:v_0-007
 	a               :Version ;
 	dc:issued       "2012-07-05"^^xsd:date ;
 	:revision       "0.007"^^xsd:string ;
-	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.006.tar.gz> ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.007.tar.gz> ;
+	rdfs:label      "Bond, James Bond";
 	dcs:changeset [
 		dcs:versus my:v_0-006 ;
 		dcs:item   [ a dcs:Update, dcs:Packaging ; rdfs:label "Bump versions of some dependencies."@en ] ;
+	] .
+
+my:project :release my:v_0-008 .
+my:v_0-008
+	a               :Version ;
+	dc:issued       "2012-07-05"^^xsd:date ;
+	:revision       "0.008"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.008.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-007 ;
+		dcs:item   [ a dcs:Bugfix ; rdfs:label "Get t/01basic.t working again."@en ] ;
 	] .

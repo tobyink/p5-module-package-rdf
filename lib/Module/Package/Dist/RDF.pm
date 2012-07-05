@@ -10,7 +10,7 @@ use strict;
 
 BEGIN {
 	$Module::Package::Dist::RDF::AUTHORITY = 'cpan:TOBYINK';
-	$Module::Package::Dist::RDF::VERSION   = '0.007';
+	$Module::Package::Dist::RDF::VERSION   = '0.008';
 	@Module::Package::Dist::RDF::ISA       = 'Module::Package::Dist';
 }
 
@@ -27,7 +27,7 @@ sub _main
 	use strict;
 	BEGIN {
 		$Module::Package::Dist::RDF::standard::AUTHORITY = 'cpan:TOBYINK';
-		$Module::Package::Dist::RDF::standard::VERSION   = '0.007';
+		$Module::Package::Dist::RDF::standard::VERSION   = '0.008';
 		@Module::Package::Dist::RDF::standard::ISA       = 'Module::Package::Dist::RDF';
 	}
 }
