@@ -1,0 +1,28 @@
+`Module-Package-RDF`
+	requires p`Module::Package 0.30`;
+	requires p`Module::Install 1.04`;
+	requires p`Module::Install::RDF 0.007`;
+	requires p`Module::Install::DOAP 0.004`;
+	requires p`Module::Install::DOAPChangeSets 0.203`;
+	requires p`Module::Install::AutoLicense 0.08`;
+	requires p`Module::Install::ReadmeFromPod 0.12`;
+	requires p`Module::Install::AutoManifest`;
+	requires p`Module::Install::TrustMetaYml 0.001`;
+	requires p`Module::Install::AutoInstall 0`;
+	requires p`RDF::Trine 0.135`;
+	requires p`RDF::TriN3 0.201`;
+	requires p`Log::Log4perl`;
+	requires p`URI::Escape`;
+	requires p`Software::License`;
+	requires p`IO::All`;
+	requires p`Text::Template`;
+	requires p`DateTime`;
+	requires p`Test::Pod`;
+	requires p`Test::Pod::Coverage`;
+	requires p`Test::RDF::DOAP::Version 0.007`;
+	requires p`Getopt::Long`;
+	requires p`Getopt::ArgvFile`;
+	requires p`URI::file 4.0`;
+	test_requires p`Test::More 0.61`;
+	.
+
