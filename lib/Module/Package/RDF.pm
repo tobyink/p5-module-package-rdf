@@ -1,6 +1,6 @@
 package Module::Package::RDF;
 
-use 5.008003;
+use 5.010;
 use strict;
 
 use RDF::Trine 0.135 ();
@@ -18,7 +18,7 @@ use Log::Log4perl 0 qw(:easy);
 
 BEGIN {
 	$Module::Package::RDF::AUTHORITY = 'cpan:TOBYINK';
-	$Module::Package::RDF::VERSION   = '0.006';
+	$Module::Package::RDF::VERSION   = '0.007';
 }
 
 use Moo;
@@ -65,10 +65,10 @@ sub write_deps_list {}
 
 {
 	package Module::Package::RDF::standard;
-	use 5.008003;
+	use 5.010;
 	BEGIN {
 		$Module::Package::RDF::standard::AUTHORITY = 'cpan:TOBYINK';
-		$Module::Package::RDF::standard::VERSION   = '0.006';
+		$Module::Package::RDF::standard::VERSION   = '0.007';
 		@Module::Package::RDF::standard::ISA       = 'Module::Package::RDF';
 	}
 }
