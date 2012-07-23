@@ -10,6 +10,7 @@ use Module::Install::AutoInstall 0 ();
 use Module::Install::AutoLicense 0.08 ();
 use Module::Install::AutoManifest 0 ();
 use Module::Install::ReadmeFromPod 0.12 ();
+use Module::Install::StandardDocuments 0 ();
 use Module::Install::RDF 0.006 ();
 use Module::Install::DOAP 0.002 ();
 use Module::Install::DOAPChangeSets 0.203 ();
@@ -18,7 +19,7 @@ use Log::Log4perl 0 qw(:easy);
 
 BEGIN {
 	$Module::Package::RDF::AUTHORITY = 'cpan:TOBYINK';
-	$Module::Package::RDF::VERSION   = '0.008';
+	$Module::Package::RDF::VERSION   = '0.009';
 }
 
 use Moo;
@@ -68,8 +69,24 @@ sub write_deps_list {}
 	use 5.010;
 	BEGIN {
 		$Module::Package::RDF::standard::AUTHORITY = 'cpan:TOBYINK';
-		$Module::Package::RDF::standard::VERSION   = '0.008';
+		$Module::Package::RDF::standard::VERSION   = '0.009';
 		@Module::Package::RDF::standard::ISA       = 'Module::Package::RDF';
+	};
+}
+
+{
+	package Module::Package::RDF::tobyink;
+	use 5.010;
+	BEGIN {
+		$Module::Package::RDF::tobyink::AUTHORITY = 'cpan:TOBYINK';
+		$Module::Package::RDF::tobyink::VERSION   = '0.009';
+		@Module::Package::RDF::tobyink::ISA       = 'Module::Package::RDF';
+	};
+	sub main
+	{
+		my $self = shift;
+		$self->mi->clone_standard_documents;
+		$self->SUPER::main(@_);
 	}
 }
 
