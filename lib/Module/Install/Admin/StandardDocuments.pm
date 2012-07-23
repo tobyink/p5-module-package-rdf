@@ -20,7 +20,8 @@ sub clone_standard_documents
 	my $self = shift;
 	foreach ($self->_get_standard_documents)
 	{
-		$self->_copy_standard_document($_);
+		my @file = @{ $self->_copy_standard_document($_) };
+		$self->clean_files(@file) if @file;
 	}
 	1;
 }
