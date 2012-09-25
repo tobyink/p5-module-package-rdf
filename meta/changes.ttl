@@ -105,3 +105,16 @@ my:v_0-008
 		dcs:versus my:v_0-007 ;
 		dcs:item   [ a dcs:Bugfix ; rdfs:label "Get t/01basic.t working again."@en ] ;
 	] .
+
+my:project :release my:v_0-009 .
+my:v_0-009
+	a               :Version ;
+	dc:issued       "2012-09-25"^^xsd:date ;
+	:revision       "0.009"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.009.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-008 ;
+		dcs:item   [ rdfs:label "App::mkdist now pulls author tests from ~/perl5/xt rather than producing hard-coded ones."@en ] ;
+		dcs:item   [ rdfs:label "Module::Install::StandardDocuments."@en; a dcs:Addition ] ;
+		dcs:item   [ rdfs:label "bin/mkdist now sports a --package_flavour option."@en ] ;
+	] .

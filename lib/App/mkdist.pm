@@ -60,7 +60,7 @@ sub _fill_in_template
 	
 	return $template->fill_in(
 		-hash => \%hash,
-		);
+	);
 }
 
 sub _iofile
@@ -122,6 +122,8 @@ sub set_defaults
 	$self->{abstract} ||= 'a module that does something-or-other';
 	$self->{version}  ||= '0.001';
 	
+	$self->{package_flavour} ||= 'standard';
+	
 	$self->{version_ident} = 'v_'.$self->{version};
 	$self->{version_ident} =~ s/\./-/g;
 	
@@ -142,7 +144,7 @@ sub set_defaults
 	$self->{licence} = $self->{licence_class}->new({
 		year    => $self->{copyright}{year},
 		holder  => $self->{copyright}{holder},
-		});
+	});
 	
 	# 'includes' is 'use' minus some modules we handle specially
 	$self->{includes} = [grep {!/^(autodie|boolean|common_sense|strict|warnings|moose|5\.[0-9_]+|namespace_clean)$/} keys %{$self->{use}}];
@@ -153,8 +155,7 @@ sub set_defaults
 		push @mr, 'autodie'          if $self->{use}{autodie};
 		push @mr, 'boolean'          if $self->{use}{boolean};
 		push @mr, 'common::sense'    if $self->{use}{common_sense};
-		push @mr, 'namespace::clean' if $self->{use}{namespace_clean}
-		                             || $self->{use}{moose};
+		push @mr, 'namespace::clean' if $self->{use}{namespace_clean} || $self->{use}{moose};
 		
 		if (@mr)
 		{
@@ -205,24 +206,21 @@ sub create_module
 {
 	my ($self) = @_;
 	
-	$self->_iofile( $self->{module_filename} )
-		->print( $self->_fill_in_template('module') );
+	$self->_iofile( $self->{module_filename} )->print( $self->_fill_in_template('module') );
 }
 
 sub create_makefile_pl
 {
 	my ($self) = @_;
 	
-	$self->_iofile('Makefile.PL')
-		->print($self->_fill_in_template('Makefile.PL'));
+	$self->_iofile('Makefile.PL')->print($self->_fill_in_template('Makefile.PL'));
 }
 
 sub create_metadata
 {
 	my ($self) = @_;
 	
-	$self->_iofile($_)
-		->print($self->_fill_in_template($_))
+	$self->_iofile($_)->print($self->_fill_in_template($_))
 		foreach grep { m#^meta/# } $self->_get_template_names;
 }
 
@@ -230,8 +228,7 @@ sub create_tests
 {
 	my ($self) = @_;
 	
-	$self->_iofile($_)
-		->print($self->_fill_in_template($_))
+	$self->_iofile($_)->print($self->_fill_in_template($_))
 		foreach grep { m#^t/# } $self->_get_template_names;
 }
 
@@ -239,9 +236,12 @@ sub create_author_tests
 {
 	my ($self) = @_;
 	
-	$self->_iofile($_)
-		->print($self->_fill_in_template($_))
+	$self->_iofile($_)->print($self->_fill_in_template($_))
 		foreach grep { m#^xt/# } $self->_get_template_names;
+	
+	my $xtdir = io->catdir($ENV{HOME}, qw(perl5 xt));
+	$self->_iofile("xt/".$_->filename)->print(scalar $_->slurp)
+		foreach grep { $_->filename =~ /\.t$/ } $xtdir->all;
 }
 
 1;
@@ -353,7 +353,7 @@ WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
 MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 COMMENCE Makefile.PL
-use inc::Module::Package 'RDF {$mpr_version}';
+use inc::Module::Package 'RDF:{$package_flavour} {$mpr_version}';
 
 COMMENCE meta/changes.pret
 # This file acts as the project's changelog.
@@ -381,9 +381,14 @@ COMMENCE meta/doap.pret
 <{$licence->url}>
 	dc:title  "{$licence->name}".
 
+COMMENCE meta/people.pret
+# This file contains data about the project developers.
+
+@prefix : <http://xmlns.com/foaf/0.1/>.
+
 cpan:{uc $author->{cpanid}}
-	foaf:name  "{$author->{name}}";
-	foaf:mbox  <mailto:{$author->{mbox}}>.
+	:name  "{$author->{name}}";
+	:mbox  <mailto:{$author->{mbox}}>.
 
 COMMENCE meta/makefile.pret
 # This file provides instructions for packaging.
@@ -392,31 +397,13 @@ COMMENCE meta/makefile.pret
 	perl_version_from m`{$module_name}`;
 	version_from      m`{$module_name}`;
 	readme_from       m`{$module_name}`;
-	test_requires     p`Test::More 0.61` {$requires} .
+	test_requires     p`Test::More 0.61` {$requires};
+	.
 
 COMMENCE t/01basic.t
 use Test::More tests => 1;
 BEGIN \{ use_ok('{$module_name}') \};
 
-COMMENCE xt/01pod.t
-use Test::More;
-eval "use Test::Pod 1.00";
-plan skip_all => "Test::Pod 1.00 required for testing POD" if $@;
-all_pod_files_ok();
+COMMENCE xt/03meta_uptodate.config
+\{"package":"{$dist_name}"\}
 
-COMMENCE xt/02pod_coverage.t
-use Test::More;
-use Test::Pod::Coverage;
-
-my @modules = qw({$module_name});
-pod_coverage_ok($_, "$_ is covered") for @modules;
-done_testing(scalar @modules);
-
-COMMENCE xt/03meta_uptodate.t
-use Test::More tests => 1;
-use Test::RDF::DOAP::Version;
-doap_version_ok('{$dist_name}', '{$module_name}');
-
-COMMENCE xt/04eol.t
-use Test::EOL;
-all_perl_files_ok();

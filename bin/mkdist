@@ -17,6 +17,7 @@ GetOptions(\%options,
 	'dist_maker|D=s',
 	'help|usage|h',
 	'licence_class|l=s',
+	'package_flavour=s',
 	'use|M=s@',
 	'version|v',
 	);
@@ -38,6 +39,7 @@ Options:
   --dist_maker=S, -D=S     Class to use to create distribution.
   --help, -h               Show this help.
   --licence_class=S, -l=S  Perl class with licensing data.
+  --package_flavour=S      use Module::Package::RDF::$flavour.
   --use S, -M=S            Distribution should use these modules.
   --version=S, -v=S        Initial version number.
 
@@ -65,6 +67,8 @@ license_class defaults to "Software::License::Perl_5".
 
 dist_maker defaults to "App::mkdist", but any package that provides the same
 API should work.
+
+package_flavour defaults to 'standard'.
 
 Example:
 
