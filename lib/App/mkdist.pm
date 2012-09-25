@@ -139,7 +139,7 @@ sub set_defaults
 	$self->{copyright}{holder} ||= $self->{author}{name};
 	$self->{copyright}{year}   ||= DateTime->now->year;
 	
-	$self->{licence_class} ||= 'Software::License::Perl_5'; 
+	$self->{licence_class} ||= 'Software::License::Perl_5';
 	eval sprintf('use %s;', $self->{licence_class});
 	$self->{licence} = $self->{licence_class}->new({
 		year    => $self->{copyright}{year},
@@ -159,9 +159,10 @@ sub set_defaults
 		
 		if (@mr)
 		{
-			$self->{requires} = sprintf(";\n\t:requires %s",
+			$self->{requires} = sprintf(
+				";\n\t:requires %s",
 				(join ' , ', (map { my ($pkg, $ver) = split /\s+/, $_; ($ver =~ /^v?[0-9\._]+/) ? "p`$pkg $ver`" : "p`$pkg`" } @mr))
-				);
+			);
 		}
 		else
 		{
@@ -170,29 +171,29 @@ sub set_defaults
 	}
 	
 	$self->{pragmas} ||= join "\n", do {
-			my @pragmas = grep { /^5\.[0-9_]+$/ } keys %{$self->{use}};
-			push @pragmas, '5.010' unless @pragmas;
-			push @pragmas, 'autodie' if $self->{use}{autodie};
-			push @pragmas, ($self->{use}{boolean}) ?  'boolean' : 'constant { false => 0, true => 1 }';
-			push @pragmas, ($self->{use}{common_sense} ? ('common::sense') : ('strict','warnings'));
-			push @pragmas, 'utf8';
-			push @pragmas, 'Moose' if $self->{use}{moose};
-			map { sprintf('use %s;', $_) } @pragmas;
-		};
+		my @pragmas = grep { /^5\.[0-9_]+$/ } keys %{$self->{use}};
+		push @pragmas, '5.010' unless @pragmas;
+		push @pragmas, 'autodie' if $self->{use}{autodie};
+		push @pragmas, ($self->{use}{boolean}) ?  'boolean' : 'constant { false => 0, true => 1 }';
+		push @pragmas, ($self->{use}{common_sense} ? ('common::sense') : ('strict','warnings'));
+		push @pragmas, 'utf8';
+		push @pragmas, 'Moose' if $self->{use}{moose};
+		map { sprintf('use %s;', $_) } @pragmas;
+	};
 	
 	$self->{final_pragmas} ||= join "\n", do {
-			my @pragmas;
-			push @pragmas, 'namespace::clean' if $self->{use}{namespace_clean} || $self->{use}{moose};
-			map { sprintf('use %s;', $_) } @pragmas;
-		};
-
+		my @pragmas;
+		push @pragmas, 'namespace::clean' if $self->{use}{namespace_clean} || $self->{use}{moose};
+		map { sprintf('use %s;', $_) } @pragmas;
+	};
+	
 	$self->{final_code} ||= join "\n", do {
-			my @lines;
-			push @lines, '__PACKAGE__->meta->make_immutable;' if $self->{use}{moose};
-			push @lines, 'true;';
-			@lines;
-		};
-		
+		my @lines;
+		push @lines, '__PACKAGE__->meta->make_immutable;' if $self->{use}{moose};
+		push @lines, 'true;';
+		@lines;
+	};
+	
 	foreach (qw(pragmas final_pragmas includes))
 	{
 		if (ref $self->{$_} eq 'ARRAY')
@@ -207,6 +208,7 @@ sub create_module
 	my ($self) = @_;
 	
 	$self->_iofile( $self->{module_filename} )->print( $self->_fill_in_template('module') );
+	return;
 }
 
 sub create_makefile_pl
@@ -214,6 +216,7 @@ sub create_makefile_pl
 	my ($self) = @_;
 	
 	$self->_iofile('Makefile.PL')->print($self->_fill_in_template('Makefile.PL'));
+	return;
 }
 
 sub create_metadata
@@ -222,6 +225,7 @@ sub create_metadata
 	
 	$self->_iofile($_)->print($self->_fill_in_template($_))
 		foreach grep { m#^meta/# } $self->_get_template_names;
+	return;
 }
 
 sub create_tests
@@ -230,6 +234,7 @@ sub create_tests
 	
 	$self->_iofile($_)->print($self->_fill_in_template($_))
 		foreach grep { m#^t/# } $self->_get_template_names;
+	return;
 }
 
 sub create_author_tests
@@ -242,6 +247,7 @@ sub create_author_tests
 	my $xtdir = io->catdir($ENV{HOME}, qw(perl5 xt));
 	$self->_iofile("xt/".$_->filename)->print(scalar $_->slurp)
 		foreach grep { $_->filename =~ /\.t$/ } $xtdir->all;
+	return;
 }
 
 1;

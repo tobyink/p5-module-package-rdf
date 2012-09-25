@@ -20,7 +20,7 @@ GetOptions(\%options,
 	'package_flavour=s',
 	'use|M=s@',
 	'version|v',
-	);
+);
 
 $options{dist_maker} = 'App::mkdist';
 
@@ -31,37 +31,37 @@ mkdist [options] dist_name1 dist_name2 ...
 
 Options:
 
-  --abstract=S, -A=S       Short description for distribution
-  --author k=v, -a k=v     Set author data.
-  --backpan=S              URL for archives.
-  --copyright k=v, -c k=v  Set copyright data.
-  --destination=S, -d=S    Output directory.
-  --dist_maker=S, -D=S     Class to use to create distribution.
-  --help, -h               Show this help.
-  --licence_class=S, -l=S  Perl class with licensing data.
-  --package_flavour=S      use Module::Package::RDF::$flavour.
-  --use S, -M=S            Distribution should use these modules.
-  --version=S, -v=S        Initial version number.
+	--abstract=S, -A=S       Short description for distribution
+	--author k=v, -a k=v     Set author data.
+	--backpan=S              URL for archives.
+	--copyright k=v, -c k=v  Set copyright data.
+	--destination=S, -d=S    Output directory.
+	--dist_maker=S, -D=S     Class to use to create distribution.
+	--help, -h               Show this help.
+	--licence_class=S, -l=S  Perl class with licensing data.
+	--package_flavour=S      use Module::Package::RDF::$flavour.
+	--use S, -M=S            Distribution should use these modules.
+	--version=S, -v=S        Initial version number.
 
 Author data keys:
 
-  cpanid                Author's CPAN ID
-  mbox                  Author's email address
-  name                  Author's full name
-  
+	cpanid            Author's CPAN ID
+	mbox              Author's email address
+	name              Author's full name
+
 Copyright data keys:
 
-  holder                Copyright holder
-  year                  Copyright year
+	holder            Copyright holder
+	year              Copyright year
 
 The values of "use" are interpreted thusly:
 
-  * 'boolean' uses 'boolean' and avoids defining constants for true and false.
-  * 'common_sense' uses 'common::sense' instead of 'strict' and 'warnings'.
-  * 'namespace_clean' uses 'namespace::clean'.
-  * 'moose' (lowercase) uses 'Moose' and 'namespace::clean'.
-  * Other values are interpreted as the names of modules to use.
-  * Perl version defaults to 5.010.
+	* 'boolean' avoids defining constants for true and false.
+	* 'common_sense' uses common::sense instead of strict/warnings.
+	* 'namespace_clean' uses namespace::clean.
+	* 'moose' (lowercase) uses Moose and namespace::clean.
+	* Other values are interpreted as the names of modules to use.
+	* Perl version defaults to 5.010.
 
 license_class defaults to "Software::License::Perl_5".
 
@@ -72,16 +72,17 @@ package_flavour defaults to 'standard'.
 
 Example:
 
-  mkdist --author name="Toby Inkster" \
-         --author cpanid="tobyink" \
-         --copyright year=2010 \
-         --abstract="does something useful" \
-         --use autodie \
-         --use boolean \
-         --use common_sense \
-         --use DateTime \
-         --use 5.008003 \
-         "Local::Example::Useful"
+	mkdist \
+		--author name="Toby Inkster" \
+		--author cpanid="tobyink" \
+		--copyright year=2010 \
+		--abstract="does something useful" \
+		--use autodie \
+		--use boolean \
+		--use common_sense \
+		--use DateTime \
+		--use 5.008003 \
+		"Local::Example::Useful"
 
 Frequently used settings can be kept in ~/.mkdist
 

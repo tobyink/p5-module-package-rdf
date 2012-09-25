@@ -1,3 +1,5 @@
+use XT::Util;
 use Test::More tests => 1;
 use Test::RDF::DOAP::Version;
-doap_version_ok('Module-Package-RDF', 'Module::Package::RDF');
+doap_version_ok(__CONFIG__->{package}, __CONFIG__->{version_from});
+
