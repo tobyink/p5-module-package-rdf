@@ -119,14 +119,16 @@ my:v_0-009
 		dcs:item   [ rdfs:label "bin/mkdist now sports a --package_flavour option."@en ] ;
 	] .
 
-my:project :release my:v_0-010 .
-my:v_0-010
-	a               :Version ;
-	dc:issued       "2013-03-11"^^xsd:date ;
-	:revision       "0.010"^^xsd:string ;
-	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.010.tar.gz> ;
-	dcs:changeset [
-		dcs:versus my:v_0-009 ;
-		dcs:item   [ rdfs:label "use Module::Install::Copyright"@en ] ;
-		dcs:item   [ a dcs:Bugfix; rdfs:label "Avoid auto-deps thingy from picking up Module::Install::StandardDocuments as a dep - it's bundled"@en ] ;
+### PretDSL below this point...
+
+`Module-Package-RDF 0.010 cpan:TOBYINK`
+	issued        2013-03-11;
+	changeset     [
+		item "use Module::Install::Copyright"^^Change;
+		item [
+			a dcs:Bugfix;
+			label "Avoid auto-deps thingy from picking up Module::Install::StandardDocuments as a dep - it's bundled";
+			dcs:fixes RT#82158;
+			dcs:thanks cpan:CHORNY;
+		];
 	] .
