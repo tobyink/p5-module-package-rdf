@@ -118,3 +118,14 @@ my:v_0-009
 		dcs:item   [ rdfs:label "Module::Install::StandardDocuments."@en; a dcs:Addition ] ;
 		dcs:item   [ rdfs:label "bin/mkdist now sports a --package_flavour option."@en ] ;
 	] .
+
+my:project :release my:v_0-010 .
+my:v_0-010
+	a               :Version ;
+	dc:issued       "2013-03-11"^^xsd:date ;
+	:revision       "0.010"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Module-Package-RDF-0.010.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-009 ;
+		dcs:item   [ rdfs:label "use Module::Install::Copyright"@en ] ;
+	] .

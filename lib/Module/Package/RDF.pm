@@ -20,7 +20,7 @@ use Log::Log4perl 0 qw(:easy);
 
 BEGIN {
 	$Module::Package::RDF::AUTHORITY = 'cpan:TOBYINK';
-	$Module::Package::RDF::VERSION   = '0.009';
+	$Module::Package::RDF::VERSION   = '0.010';
 }
 
 use Moo;
@@ -71,7 +71,7 @@ sub write_deps_list {}
 	use 5.010;
 	BEGIN {
 		$Module::Package::RDF::standard::AUTHORITY = 'cpan:TOBYINK';
-		$Module::Package::RDF::standard::VERSION   = '0.009';
+		$Module::Package::RDF::standard::VERSION   = '0.010';
 		@Module::Package::RDF::standard::ISA       = 'Module::Package::RDF';
 	};
 }
@@ -81,7 +81,7 @@ sub write_deps_list {}
 	use 5.010;
 	BEGIN {
 		$Module::Package::RDF::tobyink::AUTHORITY = 'cpan:TOBYINK';
-		$Module::Package::RDF::tobyink::VERSION   = '0.009';
+		$Module::Package::RDF::tobyink::VERSION   = '0.010';
 		@Module::Package::RDF::tobyink::ISA       = 'Module::Package::RDF';
 	};
 	sub main

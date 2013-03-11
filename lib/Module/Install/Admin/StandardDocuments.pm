@@ -6,7 +6,7 @@ no warnings;
 
 BEGIN {
 	$Module::Install::Admin::StandardDocuments::AUTHORITY = 'cpan:TOBYINK';
-	$Module::Install::Admin::StandardDocuments::VERSION   = '0.009';
+	$Module::Install::Admin::StandardDocuments::VERSION   = '0.010';
 };
 
 use base 'Module::Install::Base';
