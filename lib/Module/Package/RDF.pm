@@ -10,7 +10,7 @@ use Module::Install::AutoInstall 0 ();
 use Module::Install::AutoLicense 0.08 ();
 use Module::Install::AutoManifest 0 ();
 use Module::Install::ReadmeFromPod 0.12 ();
-use Module::Install::StandardDocuments 0 ();
+use Module::Install::StandardDocuments ();
 use Module::Install::Copyright 0.003 ();
 use Module::Install::RDF 0.006 ();
 use Module::Install::DOAP 0.002 ();
