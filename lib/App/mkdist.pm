@@ -329,6 +329,10 @@ BEGIN \{
 
 {}__END__
 
+{}=pod
+
+{}=encoding utf-8
+
 {}=head1 NAME
 
 {$module_name} - {$abstract}
@@ -379,6 +383,7 @@ COMMENCE meta/doap.pret
 	:homepage             <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
 	:download-page        <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
 	:bug-database         <http://rt.cpan.org/Dist/Display.html?Queue={URI::Escape::uri_escape($dist_name)}>;
+#	:repository           [ a :HgRepository; :browse <https://bitbucket.org/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}> ];
 	:created              {DateTime->now->ymd('-')};
 	:license              <{$licence->url}>;
 	:maintainer           cpan:{uc $author->{cpanid}};
@@ -402,13 +407,35 @@ COMMENCE meta/makefile.pret
 `{$dist_name}`
 	perl_version_from m`{$module_name}`;
 	version_from      m`{$module_name}`;
-	readme_from       m`{$module_name}`;
-	test_requires     p`Test::More 0.61` {$requires};
+	readme_from       m`{$module_name}` {$requires};
 	.
 
 COMMENCE t/01basic.t
-use Test::More tests => 1;
-BEGIN \{ use_ok('{$module_name}') \};
+{}=pod
+
+{}=encoding utf-8
+
+{}=head1 PURPOSE
+
+Test that {$module_name} compiles.
+
+{}=head1 AUTHOR
+
+{$author->{name}} E<lt>{$author->{mbox}}E<gt>.
+
+{}=head1 COPYRIGHT AND LICENCE
+
+{$licence->notice}
+
+{}=cut
+
+use strict;
+use warnings;
+use Test::More;
+
+use_ok('{$module_name}');
+
+done_testing;
 
 COMMENCE xt/03meta_uptodate.config
 \{"package":"{$dist_name}"\}
