@@ -128,4 +128,5 @@ my:v_0-010
 	dcs:changeset [
 		dcs:versus my:v_0-009 ;
 		dcs:item   [ rdfs:label "use Module::Install::Copyright"@en ] ;
+		dcs:item   [ a dcs:Bugfix; rdfs:label "Avoid auto-deps thingy from picking up Module::Install::StandardDocuments as a dep - it's bundled"@en ] ;
 	] .
