@@ -1,7 +1,7 @@
 `Module-Package-RDF`
 	requires p`Module::Package 0.30`;
 	requires p`Module::Install 1.04`;
-	requires p`Module::Install::RDF 0.007`;
+	requires p`Module::Install::RDF 0.008`;
 	requires p`Module::Install::DOAP 0.004`;
 	requires p`Module::Install::Copyright 0.003`;
 	requires p`Module::Install::DOAPChangeSets 0.203`;
