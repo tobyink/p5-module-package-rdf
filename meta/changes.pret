@@ -132,3 +132,9 @@ my:v_0-009
 			dcs:thanks cpan:CHORNY;
 		];
 	] .
+
+`Module-Package-RDF 0.011 cpan:TOBYINK`
+	issued        2013-03-16;
+	changeset     [
+		item "use Module::Install::RDF's new write_meta_ttl feature"^^Change;
+	] .
