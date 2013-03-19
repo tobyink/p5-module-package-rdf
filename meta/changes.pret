@@ -138,3 +138,9 @@ my:v_0-009
 	changeset     [
 		item "use Module::Install::RDF's new write_meta_ttl feature"^^Change;
 	] .
+
+`Module-Package-RDF 0.012 cpan:TOBYINK`
+	issued        2013-03-19;
+	changeset     [
+		item "use Module::Install::Changes"^^Addition;
+	] .
