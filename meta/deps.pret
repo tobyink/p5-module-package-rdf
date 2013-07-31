@@ -1,3 +1,5 @@
+@prefix : <http://ontologi.es/doap-deps#> .
+
 `Module-Package-RDF`
 	:runtime_requires [ :on "Module::Package 0.30" ];
 	:runtime_requires [ :on "Module::Install 1.04" ];
