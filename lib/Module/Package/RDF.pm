@@ -11,11 +11,11 @@ use Module::Install::AutoLicense 0.08 ();
 use Module::Install::AutoManifest 0 ();
 use Module::Install::ReadmeFromPod 0.12 ();
 use Module::Install::StandardDocuments ();
-use Module::Install::Copyright 0.004 ();
-use Module::Install::Credits 0.004 ();
-use Module::Install::RDF 0.008 ();
-use Module::Install::DOAP 0.002 ();
-use Module::Install::DOAPChangeSets 0.203 ();
+use Module::Install::Copyright 0.009 ();
+use Module::Install::Credits 0.009 ();
+use Module::Install::RDF 0.009 ();
+use Module::Install::DOAP 0.005 ();
+use Module::Install::DOAPChangeSets 0.206 ();
 use Module::Install::TrustMetaYml 0.001 ();
 use Log::Log4perl 0 qw(:easy);
 
