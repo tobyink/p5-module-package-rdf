@@ -160,7 +160,7 @@ sub set_defaults
 		if (@mr)
 		{
 			$self->{requires} = sprintf(
-				";\n\t:runtime_requires %s",
+				";\n\t:runtime-requirement %s",
 				(join ' , ', (map { my ($pkg, $ver) = split /\s+/, $_; ($ver =~ /^v?[0-9\._]+/) ? "[ :on \"$pkg $ver\"^^:CpanId ]" : "[ :on \"$pkg\"^^:CpanId ]" } @mr))
 			);
 		}
