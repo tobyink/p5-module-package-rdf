@@ -383,7 +383,7 @@ COMMENCE meta/doap.pret
 	:homepage             <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
 	:download-page        <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
 	:bug-database         <http://rt.cpan.org/Dist/Display.html?Queue={URI::Escape::uri_escape($dist_name)}>;
-#	:repository           [ a :HgRepository; :browse <https://bitbucket.org/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}> ];
+#	:repository           [ a :GitRepository; :browse <https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}> ];
 	:created              {DateTime->now->ymd('-')};
 	:license              <{$licence->url}>;
 	:maintainer           cpan:{uc $author->{cpanid}};
