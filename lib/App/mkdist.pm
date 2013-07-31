@@ -4,7 +4,7 @@ use strict;
 
 BEGIN {
 	$App::mkdist::AUTHORITY = 'cpan:TOBYINK';
-	$App::mkdist::VERSION   = '0.013';
+	$App::mkdist::VERSION   = '0.014';
 }
 
 use Carp;
