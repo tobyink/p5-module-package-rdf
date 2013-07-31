@@ -4,7 +4,7 @@
 	:runtime_requires [ :on "Module::Package 0.30" ];
 	:runtime_requires [ :on "Module::Install 1.04" ];
 	:runtime_requires [ :on "Module::Install::RDF 0.009" ];
-	:runtime_requires [ :on "Module::Install::DOAP 0.005" ];
+	:runtime_requires [ :on "Module::Install::DOAP 0.006" ];
 	:runtime_requires [ :on "Module::Install::Copyright 0.009" ];
 	:runtime_requires [ :on "Module::Install::Credits 0.009" ];
 	:runtime_requires [ :on "Module::Install::DOAPChangeSets 0.206" ];

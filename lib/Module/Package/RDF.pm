@@ -14,7 +14,7 @@ use Module::Install::StandardDocuments ();
 use Module::Install::Copyright 0.009 ();
 use Module::Install::Credits 0.009 ();
 use Module::Install::RDF 0.009 ();
-use Module::Install::DOAP 0.005 ();
+use Module::Install::DOAP 0.006 ();
 use Module::Install::DOAPChangeSets 0.206 ();
 use Module::Install::TrustMetaYml 0.003 ();
 use Log::Log4perl 0 qw(:easy);
