@@ -160,8 +160,8 @@ sub set_defaults
 		if (@mr)
 		{
 			$self->{requires} = sprintf(
-				";\n\t:requires %s",
-				(join ' , ', (map { my ($pkg, $ver) = split /\s+/, $_; ($ver =~ /^v?[0-9\._]+/) ? "p`$pkg $ver`" : "p`$pkg`" } @mr))
+				";\n\t:runtime_requires %s",
+				(join ' , ', (map { my ($pkg, $ver) = split /\s+/, $_; ($ver =~ /^v?[0-9\._]+/) ? "[ :on \"$pkg $ver\"^^:CpanId ]" : "[ :on \"$pkg\"^^:CpanId ]" } @mr))
 			);
 		}
 		else
@@ -403,6 +403,8 @@ cpan:{uc $author->{cpanid}}
 
 COMMENCE meta/makefile.pret
 # This file provides instructions for packaging.
+
+@prefix : <http://ontologi.es/doap-deps#>.
 
 `{$dist_name}`
 	perl_version_from m`{$module_name}`;
