@@ -144,3 +144,10 @@ my:v_0-009
 	changeset     [
 		item "use Module::Install::Changes"^^Addition;
 	] .
+
+`Module-Package-RDF 0.013 cpan:TOBYINK`
+	issued        2013-03-19;
+	changeset     [
+		item "Bump versions of several dependencies."^^Update;
+		item "Switch to doap-deps vocab for expressing project dependencies (mkdist)."^^Update;
+	] .
